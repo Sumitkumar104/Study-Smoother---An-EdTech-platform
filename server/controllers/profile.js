@@ -69,6 +69,7 @@ exports.deleteAccount = async (req, res) => {
         message: "User not found",
       })
     }
+
     // Delete Assosiated Profile with the User
     await Profile.findByIdAndDelete({
       _id: new mongoose.Types.ObjectId(user.additionalDetails),
@@ -80,6 +81,7 @@ exports.deleteAccount = async (req, res) => {
         { new: true }
       )
     }
+
     // Now Delete User
     await User.findByIdAndDelete({ _id: id })
     res.status(200).json({
